@@ -5,8 +5,8 @@ let boxes = Array.from(document.getElementsByClassName('box'))
 let winnerIndicator = getComputedStyle(document.body).getPropertyValue('--winning-blocks')
 
 const O_TEXT = 'O'
-const X_TEST = 'X'
-let currentPlayer = X_TEST
+const X_TEXT = 'X'
+let currentPlayer = X_TEXT
 let spaces = Array(9).fill(null)
 
 const startGame = () => {
@@ -21,14 +21,14 @@ function boxClicked(e) {
         e.target.innerText = currentPlayer
 
         if(playerWon() !== false) {
-            playerText = '${currentPlayer} has won!'
+            playerText.innerText = `${currentPlayer === X_TEXT ? 'X' : 'O'} has won!`
             let winning_blocks = playerWon()
 
             winning_blocks.map( box => boxes[box].style.backgroundColor=winnerIndicator)
             return
         }
 
-        currentPlayer = currentPlayer == X_TEST ? O_TEXT : X_TEST
+        currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT
     }
 }
 
@@ -67,7 +67,7 @@ function restart() {
 
     playerText = 'Tic Tac Toe'
 
-    currentPlayer = X_TEST
+    currentPlayer = X_TEXT
 }
 
 startGame()
